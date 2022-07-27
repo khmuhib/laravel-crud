@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AboutSectionController extends Controller
 {
@@ -13,7 +16,8 @@ class AboutSectionController extends Controller
      */
     public function index()
     {
-        return view('pages.about.index');
+        $abouts = About::all();
+        return view('pages.about.index', compact('abouts'));
     }
 
     /**
@@ -34,7 +38,20 @@ class AboutSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $about = new About;
+        $about->date_range = $request->date_range;
+        $about->title = $request->title;
+        $about->description = $request->description;
+        if($request->hasfile('about_image'))
+        {
+            $file = $request->file('about_image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('uploads/about/img', $filename);
+            $about->about_image = $filename;
+        }
+        $about->save();
+        return redirect()->back()->with('status', 'About section Data created successfully');
     }
 
     /**
@@ -56,7 +73,8 @@ class AboutSectionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $about = About::find($id);
+        return view('pages.about.edit',compact('about'));
     }
 
     /**
@@ -68,7 +86,25 @@ class AboutSectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $about = About::find($id);
+        $about->date_range = $request->date_range;
+        $about->title = $request->title;
+        $about->description = $request->description;
+        if($request->hasfile('about_image'))
+        {
+            $destination = 'uploads/about/img/'.$about->about_image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $file = $request->file('about_image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('uploads/about/img', $filename);
+            $about->about_image = $filename;
+        }
+        $about->update();
+        return redirect()->back()->with('status', 'About section Data Updated successfully');
+        
     }
 
     /**
@@ -79,6 +115,12 @@ class AboutSectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $about = About::find($id);
+        $destination = 'uploads/about/img/'.$about->about_image;
+        if(File::exists($destination)){
+            File::delete($destination);
+        }
+        $about->delete();
+        return redirect()->back()->with('status','About Data Deleted Successfully');
     }
 }

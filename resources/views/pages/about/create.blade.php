@@ -21,7 +21,7 @@
                                     <a href="{{ url('/admin/about/index') }}" class="btn btn-primary float-end">Show
                                         About</a>
                                 </h4>
-                                <form action="" enctype="multipart/form-data" method="POST">
+                                <form action="{{ url('/admin/about/store') }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="form-group mb-2">
                                         <label>Date Range</label>

@@ -17,11 +17,11 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <h4>laravel 9 Image Crud
-                                    <a href="{{ url('/admin/service/index') }}" class="btn btn-primary float-end">Show
+                                <h4>Add Service
+                                    <a href="{{ url('/admin/services/index') }}" class="btn btn-primary float-end">Show
                                         Service</a>
                                 </h4>
-                                <form action="" enctype="multipart/form-data" method="POST">
+                                <form action="{{ url('admin/serivces/create') }}" enctype="multipart/form-data" method="POST">
                                     @csrf
                                     <div class="form-group mb-2">
                                         <label>Title</label>

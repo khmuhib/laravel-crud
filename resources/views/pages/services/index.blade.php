@@ -12,7 +12,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4>laravel 9 Image Crud
-                                    <a href="{{ url('/admin/service/create') }}" class="btn btn-primary float-end">Add
+                                    <a href="{{ url('/admin/services/create') }}" class="btn btn-primary float-end">Add
                                         Service</a>
                                 </h4>
 
@@ -27,20 +27,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($services as $service)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>dsadas</td>
-                                            <td>dasdas</td>
-                                            <td>adsasdsa</td>
+                                            <th scope="row">{{ $service->id }}</th>
+                                            <td>{{ $service->title }}</td>
+                                            <td>{{ $service->description }}</td>
+                                            <td>{{ $service->icon }}</td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <a href="" class="btn btn-primary">Edit</a>
-                                                        <a href="" class="btn btn-danger">Delete</a>
+                                                        <a href="{{ url('admin/services/edit/'.$service->id) }}" class="btn btn-primary">Edit</a>
+                                                        <a href="{{ url('admin/services/delete/'.$service->id) }}" class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
+                                            
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

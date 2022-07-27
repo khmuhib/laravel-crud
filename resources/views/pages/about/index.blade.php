@@ -28,23 +28,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($abouts as $about)
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>dsadas</td>
-                                            <td>dasdas</td>
-                                            <td>adsasdsa</td>
+                                            <th scope="row">{{ $about->id }}</th>
+                                            <td>{{ $about->date_range }}</td>
+                                            <td>{{ $about->title }}</td>   
+                                            <td>{{ $about->description }}</td>   
                                             <td>
-                                                <img src="" alt="">
+                                                <img src="{{ asset('uploads/about/img/'.$about->about_image) }}" alt="{{ $about->title }}" width="100" height="100">
                                             </td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <a href="" class="btn btn-primary">Edit</a>
-                                                        <a href="" class="btn btn-danger">Delete</a>
+                                                        <a href="{{ url('/admin/about/edit/'.$about->id) }}" class="btn btn-primary">Edit</a>
+                                                        <a href="{{ url('/admin/about/delete/'.$about->id) }}" class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
+                                            
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

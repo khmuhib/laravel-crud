@@ -44,14 +44,23 @@ Route::post('/admin/header/store', [HeaderSectionController::class, 'store']);
 
 // services
 
-Route::get('/admin/service/index', [ServiceSectionController::class, 'index']);
-Route::get('/admin/service/create', [ServiceSectionController::class, 'create']);
+Route::get('/admin/services/index', [ServiceSectionController::class, 'index']);
+Route::get('/admin/services/create', [ServiceSectionController::class, 'create']);
+Route::post('/admin/serivces/create', [ServiceSectionController::class, 'store']);
+Route::get('/admin/services/edit/{id}', [ServiceSectionController::class, 'edit']);
+Route::put('/admin/services/edit/{id}', [ServiceSectionController::class, 'update']);
+Route::get('/admin/services/delete/{id}', [ServiceSectionController::class, 'destroy']);
+
 
 
 // about
 
 Route::get('/admin/about/index', [AboutSectionController::class, 'index']);
 Route::get('/admin/about/create', [AboutSectionController::class, 'create']);
+Route::post('/admin/about/store', [AboutSectionController::class, 'store']);
+Route::get('/admin/about/delete/{id}', [AboutSectionController::class, 'destroy']);
+Route::get('/admin/about/edit/{id}', [AboutSectionController::class, 'edit']);
+Route::put('/admin/about/edit/{id}', [AboutSectionController::class, 'update']);
 
 
 Route::get('/dashboard', function () {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceSectionController extends Controller
@@ -13,7 +15,8 @@ class ServiceSectionController extends Controller
      */
     public function index()
     {
-        return view('pages.services.index');
+        $services = Service::all();
+        return view('pages.services.index', compact('services'));
     }
 
     /**
@@ -34,7 +37,13 @@ class ServiceSectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $services = new Service;
+        $services->title = $request->title;
+        $services->description = $request->description;
+        $services->icon = $request->icon;
+        $services->save();
+        return redirect()->back()->with('status','Service Added Successfully');
+
     }
 
     /**
@@ -56,7 +65,8 @@ class ServiceSectionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $services = Service::find($id);
+        return view('pages.services.edit', compact('services'));
     }
 
     /**
@@ -68,6 +78,12 @@ class ServiceSectionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $services = Service::find($id);
+        $services->title = $request->title;
+        $services->description = $request->description;
+        $services->icon = $request->icon;
+        $services->update();
+        return redirect()->back()->with('status','Service Updated Successfully');
         //
     }
 
@@ -79,6 +95,9 @@ class ServiceSectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $services = Service::find($id);
+        $services->delete();
+        
+        return redirect()->back()->with('status','Service Delete Successfully');
     }
 }
