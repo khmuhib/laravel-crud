@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutSectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HeaderSectionController;
 use App\Http\Controllers\ServiceSectionController;
@@ -45,6 +46,12 @@ Route::post('/admin/header/store', [HeaderSectionController::class, 'store']);
 
 Route::get('/admin/service/index', [ServiceSectionController::class, 'index']);
 Route::get('/admin/service/create', [ServiceSectionController::class, 'create']);
+
+
+// about
+
+Route::get('/admin/about/index', [AboutSectionController::class, 'index']);
+Route::get('/admin/about/create', [AboutSectionController::class, 'create']);
 
 
 Route::get('/dashboard', function () {
