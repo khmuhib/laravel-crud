@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HeaderSectionController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,16 @@ Route::get('/admin/students/list', [StudentController::class, 'index'])->name('a
 Route::get('/admin/students/edit/{id}', [StudentController::class, 'edit']);
 Route::put('/admin/students/update/{id}', [StudentController::class, 'update']);
 Route::get('admin/student/delete/{id}', [StudentController::class, 'destroy']);
+
+
+// header
+Route::get('/admin/header/index', [HeaderSectionController::class, 'index']);
+Route::get('/admin/header/index/{id}', [HeaderSectionController::class, 'edit']);
+Route::put('admin/header/update/{id}', [HeaderSectionController::class, 'update']);
+Route::get('admin/header/delete/{id}', [HeaderSectionController::class, 'destroy']);
+Route::get('/admin/header/create/', [HeaderSectionController::class, 'create']);
+Route::post('/admin/header/store', [HeaderSectionController::class, 'store']);
+
 
 
 Route::get('/dashboard', function () {

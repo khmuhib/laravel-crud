@@ -115,6 +115,7 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
+        //return 'Delete';
         $student = Student::find($id);
         $destination = 'uploads/students/'.$student->profile_image;
         if(File::exists($destination)){
