@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HeaderSectionController;
+use App\Http\Controllers\ServiceSectionController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,11 @@ Route::get('admin/header/delete/{id}', [HeaderSectionController::class, 'destroy
 Route::get('/admin/header/create/', [HeaderSectionController::class, 'create']);
 Route::post('/admin/header/store', [HeaderSectionController::class, 'store']);
 
+
+// services
+
+Route::get('/admin/service/index', [ServiceSectionController::class, 'index']);
+Route::get('/admin/service/create', [ServiceSectionController::class, 'create']);
 
 
 Route::get('/dashboard', function () {
