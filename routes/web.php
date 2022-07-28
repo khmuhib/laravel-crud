@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\AboutSectionController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AboutSectionController;
 use App\Http\Controllers\HeaderSectionController;
 use App\Http\Controllers\ServiceSectionController;
-use App\Http\Controllers\StudentController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProtfolioSectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+//frontend
+
+Route::get('/', [FrontendController::class, 'index']);
 
 Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -61,6 +66,19 @@ Route::post('/admin/about/store', [AboutSectionController::class, 'store']);
 Route::get('/admin/about/delete/{id}', [AboutSectionController::class, 'destroy']);
 Route::get('/admin/about/edit/{id}', [AboutSectionController::class, 'edit']);
 Route::put('/admin/about/edit/{id}', [AboutSectionController::class, 'update']);
+
+//profolio
+
+Route::get('/admin/protfolio/index', [ProtfolioSectionController::class, 'index']);
+Route::get('/admin/protfolio/edit', [ProtfolioSectionController::class, 'edit']);
+Route::get('/admin/protfolio/create', [ProtfolioSectionController::class, 'create']);
+Route::post('/admin/protfolio/store', [ProtfolioSectionController::class, 'store']);
+Route::get('/admin/protfolio/edit/{id}', [ProtfolioSectionController::class, 'edit']);
+Route::put('/admin/protfolio/update/{id}', [ProtfolioSectionController::class, 'update']);
+Route::get('/admin/protfolio/delete/{id}', [ProtfolioSectionController::class, 'destroy']);
+
+
+
 
 
 Route::get('/dashboard', function () {
