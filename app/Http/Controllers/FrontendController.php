@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\About;
 use App\Models\Header;
 use App\Models\Service;
+use App\Models\Protfolio;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -19,7 +20,8 @@ class FrontendController extends Controller
         $header = Header::all()->first();
         $services = Service::all();
         $abouts = About::all();
-        return view('pages.frontend.index', compact('header', 'services', 'abouts'));
+        $protfolios = Protfolio::all();
+        return view('pages.frontend.index', compact('header', 'services', 'abouts', 'protfolios'));
     }
 
     /**
