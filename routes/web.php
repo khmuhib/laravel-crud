@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrmController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DashboardController;
@@ -76,6 +77,10 @@ Route::post('/admin/protfolio/store', [ProtfolioSectionController::class, 'store
 Route::get('/admin/protfolio/edit/{id}', [ProtfolioSectionController::class, 'edit']);
 Route::put('/admin/protfolio/update/{id}', [ProtfolioSectionController::class, 'update']);
 Route::get('/admin/protfolio/delete/{id}', [ProtfolioSectionController::class, 'destroy']);
+
+//ORM
+
+Route::get('/orm/index', [OrmController::class, 'index'])->name('admin.orm.index');
 
 
 
